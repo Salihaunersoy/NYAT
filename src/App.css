@@ -1,38 +1,356 @@
-.App {
-  text-align: center;
+/* === Genel Sayfa Ayarı === */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #d0f1ff, #f4fcff);
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* === Baloncuklar === */
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.25;
+  z-index: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.bubble1 {
+  width: 120px;
+  height: 120px;
+  background-color: #ffd6e0;
+  top: 30px;
+  left: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.bubble2 {
+  width: 200px;
+  height: 200px;
+  background-color: #cceeff;
+  bottom: 50px;
+  right: 30px;
+}
+
+.bubble3 {
+  width: 100px;
+  height: 100px;
+  background-color: #ffe680;
+  top: 200px;
+  right: 80px;
+}
+
+.bubble4 {
+  width: 150px;
+  height: 150px;
+  background-color: #d0f0c0;
+  bottom: 120px;
+  left: 50px;
+}
+
+/* === Ana Layout === */
+.main-container {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+  height: 100vh;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+}
+
+/* === Form Bölümü === */
+.form-section {
+  background: #fefefff2;
+  border-radius: 16px;
+  padding: 25px;
+  flex: 1;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-section h2 {
+  font-size: 22px;
+  color: #0077cc;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* === Görev Ekleme Formu === */
+.task-form label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.task-form input,
+.task-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  transition: 0.2s ease;
+}
+
+.task-form input:focus,
+.task-form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+  background-color: #fff;
+}
+
+.task-form button {
+  margin-top: 15px;
+  padding: 10px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background-color 0.3s;
+}
+
+.task-form button:hover {
+  background-color: #0056b3;
+}
+
+/* === Liste Bölümü === */
+.list-section {
+  background: #ffffffcc;
+  border-radius: 16px;
+  padding: 20px;
+  flex: 1;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
+  max-height: 100%;
+}
+
+/* === Liste Başlık ve Filtreler === */
+.list-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-bottom: 10px;
+}
+
+.filter-buttons button {
+  margin-left: 8px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #e0e0e0;
+  font-size: 14px;
+}
+
+.filter-buttons button.active {
+  background-color: #007bff;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* === Liste Scroll Alanı === */
+.task-list {
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* === Tablo Başlığı === */
+.task-table-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  padding: 10px 14px;
+  font-weight: bold;
+  background-color: #e9f1f9;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+/* === Görev Satırları === */
+.task-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  align-items: center;
+  background: #f5f5f5;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+.task-item.completed {
+  background-color: #d4edda;
+  border-left: 4px solid #28a745;
+}
+
+/* === Görev İçeriği === */
+.task-column {
+  overflow-wrap: anywhere;
+}
+
+.task-details {
+  font-size: 13px;
+  margin-top: 4px;
+  color: #444;
+}
+
+/* === Butonlar === */
+.task-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+}
+
+.task-actions button {
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.task-actions .done {
+  background-color: #28a745;
+  color: white;
+}
+
+.task-actions .edit {
+  background-color: #ffc107;
+  color: black;
+}
+
+.task-actions .delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #d0f1ff, #f4fcff);
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-container {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.form-section, .list-section {
+  background: #ffffffcc;
+  border-radius: 12px;
+  padding: 20px;
+  flex: 1;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.task-form label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.task-form input,
+.task-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.task-form button {
+  margin-top: 15px;
+  padding: 10px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.task-list {
+  overflow-y: auto;
+  flex: 1;
+  margin-top: 10px;
+}
+
+.task-table-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  font-weight: bold;
+  background-color: #e6f3ff;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.task-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  background: #f5f5f5;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  align-items: center;
+}
+
+.task-item.completed {
+  background-color: #d4edda;
+}
+
+.task-details {
+  font-size: 13px;
+  color: #555;
+  margin-top: 6px;
+}
+
+.task-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.task-actions button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.task-actions .done {
+  background-color: #28a745;
+  color: white;
+}
+
+.task-actions .delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+.filter-buttons button {
+  margin-left: 8px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #e0e0e0;
+  font-size: 14px;
+}
+
+.filter-buttons button.active {
+  background-color: #007bff;
+  color: white;
 }

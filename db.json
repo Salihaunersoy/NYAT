@@ -1,0 +1,25 @@
+{
+  "tasks": [
+    {
+      "id": "7167",
+      "title": "NYAT Sunum ",
+      "details": "Çarşamba günü sunum yapılacak ",
+      "dueDate": "2025-05-28",
+      "completed": false
+    },
+    {
+      "id": "f824",
+      "title": "Ödevi Bitir",
+      "details": "Matematik Ödevi",
+      "dueDate": "2025-05-31",
+      "completed": false
+    },
+    {
+      "id": "50fb",
+      "title": "Su iç ",
+      "details": "2 lt",
+      "dueDate": "2025-05-28",
+      "completed": true
+    }
+  ]
+}
